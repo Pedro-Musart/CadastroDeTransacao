@@ -1,0 +1,146 @@
+﻿@{
+    ViewData["Title"] = "Transacoes";
+}
+
+<div class="container-lg">
+    <div class="text-center">
+        <h1 class="display-4">Veja todas as transações</h1>
+
+        <div class="mt-5">
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#receitaModal">
+                Receita
+            </button>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#despesaModal">
+                Despesa
+            </button>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="receitaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Receita</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+
+                        <div class="mb-3">
+                            <label for="exampleInputNumber" class="form-label">ID da Conta</label>
+                            <input type="number" class="form-control" id="idReceitaInput">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Insira um valor</label>
+                        <div class="input-group ">
+                            <span class="input-group-text">R$</span>
+                            <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)" id="receitaInput">
+                        </div>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
+                            <textarea class="form-control" id="receitaDescricao" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="despesaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Despesa</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+
+                        <div class="mb-3">
+                            <label for="exampleInputNumber" class="form-label">ID da Conta</label>
+                            <input type="number" class="form-control" id="idDespesaInput">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Insira um valor</label>
+                            <div class="input-group ">
+                                <span class="input-group-text">R$</span>
+                                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)" id="despesaInput">
+                            </div>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
+                            <textarea class="form-control" id="despesaDescricao" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="position-relative mt-5 ">
+        <table class="table position-absolute top-0 start-50 translate-middle-x">
+            <thead>
+                <tr>
+                    <th scope="col">ID da Transação</th>
+                    <th scope="col">ID da Conta</th>
+                    <th scope="col">Nome da Conta</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Transação</th>
+                    <th scope="col">Tipo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <th scope="col">1</th>
+                    <td>Pedro Soares</td>
+                    <td>Vendi o xbox</td>
+                    <td>900</td>
+                    <td class="table-success">Receita</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <th scope="col">1</th>
+                    <td>Pedro Soares</td>
+                    <td>Transferi o dinheiro do xbox para a Sthe</td>
+                    <td>900</td>
+                    <td class="table-danger">Despesa</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <th scope="col">2</th>
+                    <td>Sthefany Santos</td>
+                    <td>Recebi o valor do xbox</td>
+                    <td>900</td>
+                    <td class="table-success">Receita</td>
+                </tr>
+                <tr >
+                    <th scope="row">4</th>
+                    <th scope="col">2</th>
+                    <td>Sthefany Santos</td>
+                    <td>Comprei lanche pra mim e pro Pedro</td>
+                    <td>60</td>
+                    <td class="table-danger">Despesa</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>

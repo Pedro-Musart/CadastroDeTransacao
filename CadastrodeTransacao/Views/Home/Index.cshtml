@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "Ver Contas";
+}
+
+<div class="container-lg">
+<div class="text-center">
+    <h1 class="display-4">Veja o saldo de cada Conta!</h1>
+
+    <div class="mt-5">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cadastroModal">
+            Cadastrar Conta
+        </button>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exclusaoModal">
+            Excluir Conta
+            </button>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="cadastroModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastro</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="exampleInputNome" class="form-label">Primeiro e Ultimo Nome</label>
+                    <div class="input-group">
+                    
+                        <input type="text" aria-label="First name" class="form-control" id="primeiroNomeInput">
+                        <input type="text" aria-label="Last name" class="form-control" id="primeiroNomeInput">
+                    </div>
+                        </div>
+                    <div class="mb-3">
+                        <label for="exampleInputNumber" class="form-label">Idade</label>
+                        <input type="number" class="form-control" id="idadeInput">
+                    </div>
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exclusaoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Excluir Conta</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="exampleInputNumber" class="form-label">Insira o ID da Conta</label>
+                        <input type="number" class="form-control" id="excluirIdInput">
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="submit" class="btn btn-danger">Excluir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="position-relative mt-5 ">
+    <table class="table position-absolute top-0 start-50 translate-middle-x">
+    <thead>
+        <tr>
+            <th scope="col">ID da Conta</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Idade</th>
+            <th scope="col">Receita</th>
+            <th scope="col">Despesas</th>
+            <th scope="col">Saldo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Pedro Soares</td>
+            <td>19</td>
+            <td>900</td>
+            <td>-100</td>
+            <td>800</td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+           <td>Sthefany Santos</td>
+            <td>17</td>
+            <td>1100</td>
+            <td>-50</td>
+            <td>1050</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>Vanessa Soares</td>
+            <td>25</td>
+            <td>100.000</td>
+            <td>-3500</td>
+            <td>96.500</td>
+        </tr>
+
+    </tbody>
+</table>
+</div>
+</div>
