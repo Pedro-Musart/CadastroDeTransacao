@@ -1,0 +1,20 @@
+﻿@model PessoaModel
+
+@{
+    ViewData["Title"] = "Apagar Conta";
+}
+
+<div class="container-lg">
+    <div class="text-center">
+        <h1 class="display-4">Realmente deseja Excluir a conta de (@Model.Nome)? </h1>
+
+        <div class="mt-5">
+            <a class="btn btn-secondary" role="button" asp-controller="Home" asp-action="Index">
+                Cancelar
+            </a>
+            <a class="btn btn-danger" role="button" asp-route-id="@Model.PK_Pessoa" asp-controller="Home" asp-action="ConfirmaDelete">Excluir</a>
+        </div>
+    </div>
+
+</div>
+

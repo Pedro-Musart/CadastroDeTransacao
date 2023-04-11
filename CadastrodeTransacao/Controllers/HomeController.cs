@@ -1,31 +1,55 @@
-﻿using System.Diagnostics;
+﻿using CadastrodeTransacao.Models;
+using CadastrodeTransacao.Repositorio;
 using Microsoft.AspNetCore.Mvc;
-using CadastrodeTransacao.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace CadastrodeTransacao.Controllers;
 
-public class HomeController : Controller
+namespace CadastrodeTransacao.Controllers
 {
-    private readonly ILogger<HomeController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    //Controller das 
+    public class HomeController : Controller
     {
-        _logger = logger;
-    }
+        public IActionResult Index()
+        {
+            List<PessoaModel> pessoas = _contaRepositorio.ListarPessoas();
+            return View(pessoas);
+        }
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+        public IActionResult Criar()
+        {
+            return View();
+        }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+        public IActionResult Apagar(int Id)
+        {
+            PessoaModel pessoa =_contaRepositorio.ListarID(Id);
+            
+            return View(pessoa);
+        }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        public IActionResult ConfirmaDelete(int Id)
+        {
+            _contaRepositorio.Apagar(Id);
+            return RedirectToAction("Index");
+        }
+
+        private readonly IContaRepositorio _contaRepositorio;
+        public HomeController(IContaRepositorio contaRepositorio)
+        {
+            _contaRepositorio = contaRepositorio;
+        }
+
+        [HttpPost]
+        public IActionResult Criar (PessoaModel pessoa)
+        {
+            _contaRepositorio.Adicionar(pessoa);
+                return RedirectToAction("Index");
+        }
+
     }
 }

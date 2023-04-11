@@ -1,0 +1,33 @@
+﻿@model PessoaModel
+
+@{
+    ViewData["Title"] = "Excluir";
+}
+
+<div class="container-lg">
+    <div class="text-center">
+        <h1 class="display-4">Cadastro de Contas</h1>
+ 
+                </div>
+                <div class="modal-body">
+                    <form asp-controller="Home" asp-action="Criar" method="post">
+                        <div class="mb-3">
+                            <label for="exampleInputNome" class="form-label">Nome e Sobrenome</label>
+                            <div class="input-group">
+
+                                <input type="text" asp-for="Nome" aria-label="First name" class="form-control" id="NomeInput">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputNumber" class="form-label">Idade</label>
+                            <input type="number" asp-for="Idade" class="form-control" id="idadeInput">
+                        </div>
+
+                            <a class="btn btn-secondary" role="button" asp-controller="Home" asp-action="Index">Voltar</a>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                 
+                    </form>
+                </div>
+
+    </div>
+
