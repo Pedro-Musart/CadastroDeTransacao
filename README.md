@@ -35,5 +35,5 @@ COMO FUNCIONA A APLICAÇÃO?
 PONTOS DE MELHORIA
 -Manipulação de dados: Seria interessante incluir uma tabela de contas no projeto para melhorar a manipulação de dados e cálculos relacionados às transações.
 -Tratamento de Erros: O projeto ainda não está blindado contra erros, portanto, é possível quebrá-lo facilmente.
--Familiaridade com a tecnologia: Como é o primeiro projeto utilizando ASP.NET Core Web App MVC, ainda há muitos conceitos a serem aprendidos, mas acredito ter desenvolvido bem.
+-Familiaridade com a tecnologia: Como é o primeiro projeto utilizando ASP.NET Core Web App MVC, ainda há muitos conceitos a serem aprendidos.
 -Cálculos relacionados às transações: Os cálculos relacionados às transações poderiam ser realizados em métodos específicos na tabela de conta, ao invés de serem feitos diretamente no Controller e Index.
