@@ -1,0 +1,48 @@
+﻿@model TransacoesModel
+
+@{
+    ViewData["Title"] = "Receita";
+}
+
+<div class="container-lg">
+    <div class="text-center">
+        <h1 class="display-4">Cadastro de Receita</h1>
+
+    </div>
+    <form asp-controller="Transacoes"  method="post">
+        <div class="mb-3">
+            <label for="exampleInputNumber" class="form-label">ID da Conta</label>
+            <input asp-for="FK_Pessoa" type="number" class="form-control" id="idTransacaoInput">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Insira um valor</label>
+            <div class="input-group ">
+                <span class="input-group-text">R$</span>
+                <input asp-for="Valor"  type="number" class="form-control" aria-label="Dollar amount (with dot and two decimal places)" id="receitaInput">
+
+            </div>
+
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
+            <textarea class="form-control" asp-for="Descricao" id="receitaDescricao" rows="3"></textarea>
+         
+        </div>
+
+        <a class="btn btn-secondary" role="button" asp-controller="Transacoes" asp-action="Index">Voltar</a>
+        <button type="submit" class="btn btn-danger" asp-action="Despesa">Despesa </button>
+        <button type="submit" class="btn btn-success" asp-action="Receita">Receita</button>
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <script>
+                alert('@ViewBag.ErrorMessage');
+            </script>
+        }
+
+    </form>
+</div>
+
+

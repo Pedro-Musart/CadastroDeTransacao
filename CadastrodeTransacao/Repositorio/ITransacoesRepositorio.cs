@@ -8,9 +8,9 @@ namespace CadastrodeTransacao.Repositorio
 
         List<TransacoesModel> ListarTransacoes();
 
-        TransacoesModel TransacaoId(int PK_transacao);
+        TransacoesModel TransacaoId(int Id);
 
-        bool Apagar(int id);
+     
     }
 }
-}
+

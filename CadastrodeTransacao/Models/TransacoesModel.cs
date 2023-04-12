@@ -8,23 +8,25 @@ using CadastrodeTransacao.Models;
 
 namespace CadastrodeTransacao.Models
 {
-    //classe que representa a tabela transações no banco de dados SQlite
+
     public class TransacoesModel
     {
         
         [Key]
-        public int PK_Transacao { get; set; } //chave primaria que adicionei para cada transação
+        public int PK_Transacao { get; set; }
 
-        public PessoaModel PK_Pessoa { get; set; } //representa a chave estrangeira PessoaModel
+        public PessoaModel PK_Pessoa { get; set; } 
 
         [ForeignKey("PK_Pessoa")]
         [Required]
-        public int FK_Pessoa { get; set; }//essa é a propria chave estrangeira da classe PessoaModel
+        public int FK_Pessoa { get; set; }
 
-        public string Descricao { get; set; }
+        public string? Descricao { get; set; }
 
         public int Valor { get; set; }
 
-        public Boolean Tipo { get; set; }
+        public string Tipo { get; set; } 
+
+       
     }
 }

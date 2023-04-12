@@ -1,4 +1,4 @@
-﻿@model List<PessoaModel>
+﻿@model List<Tuple<TransacoesModel, PessoaModel>>
 
 @{
     ViewData["Title"] = "Ver Contas";
@@ -9,46 +9,95 @@
     <h1 class="display-4">Veja o saldo de cada Conta!</h1>
 
     <div class="mt-5">
-        <a class="btn btn-primary" role="button" asp-controller="Home" asp-action="Criar">
+            <a class="btn btn-primary" role="button" asp-controller="Home" asp-action="Contas">
+                Exibir todas as contas
+            </a>
+        <a class="btn btn-success" role="button" asp-controller="Home" asp-action="Criar">
             Cadastrar Conta
         </a>
+
+
     </div>
-</div>
+    </div>       
+    
 
-    <div class="position-relative mt-5 m-5 ">
-    <table class="table position-absolute top-0 start-50 translate-middle-x">
-    <thead>
-        <tr>
-            <th scope="col">ID da Conta</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Idade</th>
-            <th scope="col">Receita</th>
-            <th scope="col">Despesas</th>
-            <th scope="col">Saldo</th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-
-                @if (Model !=null && Model.Any())
+    <div class=" position-relative mt-5 mb-5">
+        <table class="table position-absolute top-0 start-50 translate-middle-x mt-5">
+            <h2 class="mb-3">Saldo Total</h2>
+            <thead>
+                <tr>
+                    <th scope="col">Receita Total</th>
+                    <th scope="col">Despesa Total</th>
+                    <th scope="col">Saldo Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
                 {
-                    foreach (PessoaModel pessoa in Model)
+                    // Calcula a receita total, despesa total e saldo total a partir do Model (uma lista de transações)
+                    var receitaTotal = Model.Where(t => t.Item1.Tipo == "Receita").Sum(t => t.Item1.Valor);
+                    var despesaTotal = Model.Where(t => t.Item1.Tipo == "Despesa").Sum(t => t.Item1.Valor);
+                    var saldoTotal = receitaTotal + despesaTotal;
+
+                    // Exibe as informações na tabela
+                    <tr>
+                        <td>@receitaTotal</td>
+                        <td>@despesaTotal</td>
+                        <td>@saldoTotal</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="  position-relative">
+        <table class="table position-absolute top-0 start-50 translate-middle-x mt-5">
+            <h2 class="mt-5">Saldo de cada Conta</h2>
+            <thead>
+                <tr>
+                    <th scope="col">ID da Conta</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Idade</th>
+                    <th scope="col">Receita</th>
+                    <th scope="col">Despesas</th>
+                    <th scope="col">Saldo</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    // Agrupa as transações por pessoa
+                    foreach (var group in Model.GroupBy(tuple => tuple.Item2))
                     {
+                        var pessoa = group.Key;
+                        var transacoes = group.Select(tuple => tuple.Item1);
+
+                        // Calcula a despesa total e receita total da pessoa
+                        var despesa = transacoes.Where(t => t.Tipo == "Despesa").Sum(t => t.Valor);
+                        var receita = transacoes.Where(t => t.Tipo == "Receita").Sum(t => t.Valor);
+
+                        // Calcula o saldo da pessoa (lembre-se que a despesa está negativa)
+                        var saldo = receita + despesa;
+
+                        // Exibe as informações na tabela
                         <tr>
                             <th scope="row">@pessoa.PK_Pessoa</th>
-                            <td>@pessoa.Nome</td>
-                            <td>@pessoa.Idade</td>
-                            <td></td>
-                            <td>-100</td>
-                            <td>800</td>
-                            <td>
-                                <a class="btn btn-danger" role="button" asp-route-id="@pessoa.PK_Pessoa" asp-controller="Home" asp-action="ConfirmaDelete">Excluir</a>
-                            </td>
+                            <th scope="col">@pessoa.Nome</th>
+                            <th scope="col">@pessoa.Idade</th>
+                            <td>@receita</td>
+                            <td>@despesa</td>
+                            <td>@saldo</td>
                         </tr>
                     }
                 }
+            </tbody>
+        </table>
+    </div>
 
-    </tbody>
-</table>
 </div>
-</div>
+    </div>
+

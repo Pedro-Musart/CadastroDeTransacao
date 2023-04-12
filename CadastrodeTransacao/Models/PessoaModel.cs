@@ -15,5 +15,7 @@ namespace CadastrodeTransacao.Models
         public string Nome { get; set; } 
 
         public int Idade { get; set; }
+
+        public virtual List<TransacoesModel> Transacoes { get; set; }
     }
 }

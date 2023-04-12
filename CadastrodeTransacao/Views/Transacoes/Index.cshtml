@@ -1,18 +1,17 @@
-﻿@{
-    ViewData["Title"] = "Transacoes";
+﻿@model List<Tuple<TransacoesModel, PessoaModel>> // Define o tipo de modelo usado nesta visualização
+
+@{
+    ViewData["Title"] = "Transacoes"; // Define o título da página exibido na aba do navegador
 }
 
 <div class="container-lg">
     <div class="text-center">
-        <h1 class="display-4">Veja todas as transações</h1>
+        <h1 class="display-4">Veja todas as transações</h1> 
 
         <div class="mt-5">
-            <a class="btn btn-sucess" role="button" asp-controller="Transacoes" asp-action="Receita">
-                Receita
-            </a>
-            <a class="btn btn-danger" role="button" asp-controller="Transacoes" asp-action="Despesa">
-                Despesa
-            </a>
+            <a class="btn btn-primary" role="button" asp-controller="Transacoes" asp-action="Transacao">
+                Adicionar transação
+            </a> 
         </div>
     </div>
 
@@ -29,15 +28,20 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <th scope="col">1</th>
-                    <td>Pedro Soares</td>
-                    <td>Vendi o xbox</td>
-                    <td>900</td>
-                    <td class="table-success">Receita</td>
-                </tr>
-              
+                @if (Model != null && Model.Any()) // Se houver algum item na lista de transações
+                {
+                    foreach (var (transacao, pessoa) in Model) //Loop através de cada item na lista 
+                    {
+                        <tr>
+                            <th scope="row">@transacao.PK_Transacao</th>
+                            <th scope="col">@pessoa.PK_Pessoa</th>
+                            <th scope="col">@pessoa.Nome</th>  
+                            <td>@transacao.Descricao</td> 
+                            <td>@transacao.Valor</td> 
+                            <td>@transacao.Tipo</td> 
+                        </tr>
+                    }
+                }
             </tbody>
         </table>
     </div>

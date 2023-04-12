@@ -13,5 +13,5 @@ namespace CadastrodeTransacao.Repositorio
         bool Apagar(int id);
     }
 
-        
+       
 }

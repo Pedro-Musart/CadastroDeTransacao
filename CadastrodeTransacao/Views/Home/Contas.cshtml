@@ -1,0 +1,48 @@
+﻿@model List<PessoaModel>
+
+@{
+    ViewData["Title"] = "Ver Contas";
+}
+
+<div class="container-lg">
+    <div class="text-center">
+        <h1 class="display-4">Lista de Contas</h1>
+
+        <div class="mt-5">
+            <a class="btn btn-secondary" role="button" asp-controller="Home" asp-action="Index">
+                Voltar
+            </a>
+        </div>
+    </div>
+
+    <div class="position-relative mt-5 m-5 ">
+        <table class="table position-absolute top-0 start-50 translate-middle-x">
+            <thead>
+                <tr>
+                    <th scope="col">ID da Conta</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Idade</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @if (Model != null && Model.Any()) // verifica se há algum dado a ser exibido
+                {
+                    foreach (PessoaModel pessoa in Model) // itera sobre cada objeto PessoaModel na lista Model
+                    {
+                        <tr>
+                            <th scope="row">@pessoa.PK_Pessoa</th>
+                            <td>@pessoa.Nome</td>
+                            <td>@pessoa.Idade</td>
+                            <td>
+                                <a class="btn btn-danger" role="button" asp-route-id="@pessoa.PK_Pessoa" asp-controller="Home" asp-action="ConfirmaDelete">Excluir</a> <!-- botão de exclusão -->
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

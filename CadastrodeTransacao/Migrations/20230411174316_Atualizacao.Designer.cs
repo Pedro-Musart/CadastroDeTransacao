@@ -2,6 +2,7 @@
 using CadastrodeTransacao.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CadastrodeTransacao.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230411174316_Atualizacao")]
+    partial class Atualizacao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.4");
@@ -41,6 +44,7 @@ namespace CadastrodeTransacao.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Descricao")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("FK_Pessoa")

@@ -2,6 +2,7 @@
 using CadastrodeTransacao.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CadastrodeTransacao.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230411031546_Version2")]
+    partial class Version2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.4");
@@ -41,6 +44,7 @@ namespace CadastrodeTransacao.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Descricao")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("FK_Pessoa")
@@ -63,17 +67,12 @@ namespace CadastrodeTransacao.Migrations
             modelBuilder.Entity("CadastrodeTransacao.Models.TransacoesModel", b =>
                 {
                     b.HasOne("CadastrodeTransacao.Models.PessoaModel", "PK_Pessoa")
-                        .WithMany("Transacoes")
+                        .WithMany()
                         .HasForeignKey("FK_Pessoa")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("PK_Pessoa");
-                });
-
-            modelBuilder.Entity("CadastrodeTransacao.Models.PessoaModel", b =>
-                {
-                    b.Navigation("Transacoes");
                 });
 #pragma warning restore 612, 618
         }
